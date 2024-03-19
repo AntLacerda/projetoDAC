@@ -140,7 +140,133 @@ public class main {
 			}
 			
 			case 2 -> {
-				System.out.println("Ocorrencia em desenvolvimento");
+				int opt = 0;
+
+				do {
+					System.out.println("=-=-= OCORRÊNCIA =-=-=");
+					System.out.println("1 - Cadastrar");
+					System.out.println("2 - Listar");
+					System.out.println("3 - Listar por ID");
+					System.out.println("4 - Atualizar");
+					System.out.println("5 - Deletar");
+					System.out.println("0 - Voltar");
+
+					opt = scan.nextInt();
+
+					switch(opt) {
+						case 1 -> {
+							System.out.print("DATA: ");
+							String data = scan.next();
+							System.out.print("HORA: ");
+							String hora = scan.next();
+							System.out.print("LOCAL: ");
+							String local = scan.next();
+							System.out.print("TIPO DO CRIME: ");
+							String tipoCrime = scan.next();
+							DelegadoDAO delegadoDao = new DelegadoDAO();
+							List<Delegado> delegados = delegadoDao.buscarTodos();
+							delegados.forEach((delegadoUnico ->
+									System.out.println(
+											"CODIGO: " + delegadoUnico.getId() + "\n"
+													+ "NOME: " + delegadoUnico.getNome() + "\n"
+									)
+							));
+							System.out.println("Digite o CODIGO do Delegado da ocorrência: ");
+							int idDelegado = scan.nextInt();
+
+							Ocorrencia ocorrencia = new Ocorrencia(data,hora,local,tipoCrime,idDelegado);
+
+							OcorrenciaDAO ocorrenciaDao = new OcorrenciaDAO();
+							ocorrenciaDao.criarOcorrencia(ocorrencia);
+							break;
+						}
+
+						case 2 -> {
+							DelegadoDAO delegadoDao = new DelegadoDAO();
+							List<Delegado> delegados = delegadoDao.buscarTodos();
+							delegados.forEach((delegadoUnico ->
+									System.out.println(
+											"ID: " + delegadoUnico.getId() + "\n"
+													+ "MATRICULA: " + delegadoUnico.getMatricula() + "\n"
+													+ "NOME: " + delegadoUnico.getNome() + "\n"
+													+ "CONTATO: " + delegadoUnico.getContato() + "\n"
+									)
+							));
+							break;
+						}
+
+						case 3 -> {
+							DelegadoDAO delegadoDao = new DelegadoDAO();
+							System.out.println("Digite o ID do Delegado que deseja visualizar: ");
+							int idDelegado = scan.nextInt();
+
+							Delegado delegadoEncontrado = delegadoDao.buscarPorId(idDelegado);
+							if(delegadoEncontrado.getNome() == null) {
+								System.out.println("Delegado nao encontrado!");
+							} else {
+								System.out.println("CODIGO: " + delegadoEncontrado.getId());
+								System.out.println("MATRICULA: " + delegadoEncontrado.getMatricula());
+								System.out.println("NOME: " + delegadoEncontrado.getNome());
+								System.out.println("CONTATO: " + delegadoEncontrado.getContato());
+							}
+							break;
+						}
+
+						case 4 -> {
+							DelegadoDAO delegadoDao = new DelegadoDAO();
+							List<Delegado> delegados = delegadoDao.buscarTodos();
+							delegados.forEach((delegadoUnico ->
+									System.out.println(
+											"CODIGO: " + delegadoUnico.getId() + "\n"
+													+ "MATRICULA: " + delegadoUnico.getMatricula() + "\n"
+									)
+							));
+							System.out.println("Digite o CODIGO do Delegado que deseja atualizar: ");
+							int idDelegado = scan.nextInt();
+
+							Delegado delegadoAtualizado = delegadoDao.buscarPorId(idDelegado);
+
+							System.out.println("Matricula: ");
+							String matricula = scan.next();
+							delegadoAtualizado.setMatricula(matricula);
+
+							System.out.println("Nome: ");
+							String nome = scan.next();
+							delegadoAtualizado.setNome(nome);
+
+							System.out.println("Contato: ");
+							String contato = scan.next();
+							delegadoAtualizado.setContato(contato);
+
+							delegadoDao.alterar(delegadoAtualizado);
+
+							System.out.println("Codigo: " + delegadoAtualizado.getId());
+							System.out.println("Matricula: " + delegadoAtualizado.getMatricula());
+							System.out.println("Nome: " + delegadoAtualizado.getNome());
+							System.out.println("Contato: " + delegadoAtualizado.getContato());
+
+							break;
+						}
+
+						case 5 -> {
+							DelegadoDAO delegadoDao = new DelegadoDAO();
+							List<Delegado> delegados = delegadoDao.buscarTodos();
+							delegados.forEach((delegadoUnico ->
+									System.out.println(
+											"ID: " + delegadoUnico.getId() + "\n"
+													+ "NOME: " + delegadoUnico.getNome() + "\n"
+									)
+							));
+							System.out.println("Digite o ID do Delegado que deseja deletar: ");
+							int idDelegado = scan.nextInt();
+
+							delegadoDao.deletar(idDelegado);
+
+							System.out.println("Delegado deletado com sucesso!");
+							break;
+						}
+					}
+				}while(opt!=0);
 				break;
 			}
 			
@@ -280,13 +406,14 @@ public class main {
 					}
 					
 					case 2 -> {
-						System.out.println("Criacao da tabela de Ocorrencias em desenvolvimento!");
+						DBDAO dbDao = new DBDAO();
+						dbDao.criarTabelaOcorrencia();
 						break;
 					}
 					
 					case 3 -> {
-						System.out.println("Criacao da tabela de delegado em desenvolvimento!");
-						break;
+						DBDAO dbDao = new DBDAO();
+						dbDao.criarTabelaDelegado();
 					}
 				}
 				
