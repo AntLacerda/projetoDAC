@@ -16,7 +16,7 @@ public class OcorrenciaDAO {
     }
 
     public void criarOcorrencia(Ocorrencia ocorrencia) {
-        String INSERT_QUERY = "INSERT INTO ocorrencia (data, hora, local, tipoCrime, idDelegado) VALUES (?, ?, ?, ?, ?)";
+        String INSERT_QUERY = "INSERT INTO ocorrencia (data, hora, local, tipocrime, iddelegado) VALUES (?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(INSERT_QUERY);
@@ -34,7 +34,7 @@ public class OcorrenciaDAO {
     }
 
     public Ocorrencia buscarPorId(int id) {
-        String SELECT_BY_ID_QUERY = "SELECT * FROM reu WHERE id = ?";
+        String SELECT_BY_ID_QUERY = "SELECT * FROM ocorrencia WHERE id = ?";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(SELECT_BY_ID_QUERY);
@@ -78,7 +78,7 @@ public class OcorrenciaDAO {
     }
 
     public void alterar(Ocorrencia ocorrencia) {
-        String UPDATE_QUERY = "UPDATE ocorrencia SET data = ?, hora = ?, local = ?, tipoCrime = ?, idDelegado = ?, WHERE id = ?";
+        String UPDATE_QUERY = "UPDATE ocorrencia SET data = ?, hora = ?, local = ?, tipocrime = ?, iddelegado = ? WHERE id = ?";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(UPDATE_QUERY);

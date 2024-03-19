@@ -12,7 +12,7 @@ public class DelegaciaDAO {
     }
 
     public void salvar(Delegacia delegacia){
-        String INSERT_QUERY = "INSERT INTO delegacia (idOcorrencia, idReu) VALUES (?, ?)";
+        String INSERT_QUERY = "INSERT INTO delegacia (idocorrencia, idreu) VALUES (?, ?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(INSERT_QUERY);
