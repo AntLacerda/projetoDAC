@@ -46,8 +46,8 @@ public class OcorrenciaDAO {
                 ocorrencia.setData(resp.getString("data"));
                 ocorrencia.setHora(resp.getString("hora"));
                 ocorrencia.setLocal(resp.getString("local"));
-                ocorrencia.setTipoCrime(resp.getString("tipoCrime"));
-                ocorrencia.setIdDelegado(resp.getInt("idDelegado"));
+                ocorrencia.setTipoCrime(resp.getString("tipocrime"));
+                ocorrencia.setIdDelegado(resp.getInt("iddelegado"));
             }
             return ocorrencia;
         } catch(SQLException e) {

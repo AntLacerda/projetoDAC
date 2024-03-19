@@ -178,6 +178,36 @@ public class main {
 
 							OcorrenciaDAO ocorrenciaDao = new OcorrenciaDAO();
 							ocorrenciaDao.criarOcorrencia(ocorrencia);
+
+							int loop = 1;
+							do {
+								ReuDAO reuDao = new ReuDAO();
+								List<Reu> reus = reuDao.buscarTodos();
+								reus.forEach((reuUnico ->
+										System.out.println(
+												"ID: " + reuUnico.getId() + "\n"
+														+ "NOME: " + reuUnico.getNome() + "\n"
+										)
+								));
+
+								System.out.println("Digite o ID do Reu que deseja inserir na ocorrencia ou 0 para sair: ");
+
+								loop = scan.nextInt();
+
+								if(loop == 0){
+									break;
+								}
+
+								int idReu = loop;
+
+								Reu reu = reuDao.buscarPorId(idReu);
+
+								Delegacia delegacia = new Delegacia(ocorrencia, reu);
+
+								DelegaciaDAO delegaciaDao = new DelegaciaDAO();
+
+								delegaciaDao.salvar(delegacia);
+							} while (loop != 0);
 							break;
 						}
 
