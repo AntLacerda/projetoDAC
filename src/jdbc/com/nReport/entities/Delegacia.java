@@ -1,4 +1,5 @@
-package jdbc;
+package jdbc.com.nReport.entities;
+
 public class Delegacia {
     private Ocorrencia ocorrencia = new Ocorrencia();
     private Reu reu = new Reu();

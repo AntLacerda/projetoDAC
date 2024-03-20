@@ -1,4 +1,7 @@
-package jdbc;
+package jdbc.com.nReport.dao;
+
+import jdbc.com.nReport.entities.Ocorrencia;
+import jdbc.com.nReport.conexao.Conexao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

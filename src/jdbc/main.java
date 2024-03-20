@@ -1,5 +1,11 @@
 package jdbc;
 
+import jdbc.com.nReport.dao.*;
+import jdbc.com.nReport.entities.Delegacia;
+import jdbc.com.nReport.entities.Delegado;
+import jdbc.com.nReport.entities.Ocorrencia;
+import jdbc.com.nReport.entities.Reu;
+
 import java.util.List;
 import java.util.Scanner;
 

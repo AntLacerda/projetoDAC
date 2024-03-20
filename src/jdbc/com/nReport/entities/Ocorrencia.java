@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc.com.nReport.entities;
 
 public class Ocorrencia {
     private int id;

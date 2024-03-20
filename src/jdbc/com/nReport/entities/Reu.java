@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc.com.nReport.entities;
 
 public class Reu {
 	private int id;
